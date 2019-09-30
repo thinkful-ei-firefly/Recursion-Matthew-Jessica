@@ -167,7 +167,57 @@ let maze = [
 
 // For the above maze, a possible exit can be RRDDLLDDRRRRRR
 
-function mazeSolver () {}
+function mazeSolver (maze, posY=0, posX=0, directions='') {
+    let mazeCopy = maze.map(arr => [...arr])
+    if (posX < mazeCopy[0].length-1) {
+        if (mazeCopy[posY][posX+1] === ' ' || mazeCopy[posY][posX+1] === 'e') {
+            mazeCopy[posY][posX] = '*'
+            const newDirections = directions + 'R'
+            if (mazeCopy[posY][posX+1] === 'e') {
+                console.log(`Path to the exit: ${newDirections}`)
+            } else {
+                mazeSolver (mazeCopy, posY, posX+1, newDirections)
+            }        
+        }
+    }
+    if (posX > 0) {
+        if (mazeCopy[posY][posX-1] === ' ' || mazeCopy[posY][posX-1] === 'e') {
+            mazeCopy[posY][posX] = '*'
+            const newDirections = directions + 'L'
+            if (mazeCopy[posY][posX-1] === 'e') {
+                console.log(`Path to the exit: ${newDirections}`)
+            } else {
+                mazeSolver (mazeCopy, posY, posX-1, newDirections)
+            }        
+        }
+    }
+    if (posY < mazeCopy.length-1) {
+        if (mazeCopy[posY+1][posX] === ' ' || mazeCopy[posY+1][posX] === 'e') {
+            mazeCopy[posY][posX] = '*'
+            const newDirections = directions + 'D'
+            if (mazeCopy[posY+1][posX] === 'e') {
+                console.log(`Path to the exit: ${newDirections}`)
+            } else {
+                mazeSolver (mazeCopy, posY+1, posX, newDirections)
+            }        
+        }
+    }
+    if (posY > 0) {
+        if (mazeCopy[posY-1][posX] === ' ' || mazeCopy[posY-1][posX] === 'e') {
+            mazeCopy[posY][posX] = '*'
+            const newDirections = directions + 'U'
+            if (mazeCopy[posY-1][posX] === 'e') {
+                console.log(`Path to the exit: ${newDirections}`)
+            } else {
+                mazeSolver (mazeCopy, posY-1, posX, newDirections)
+            }        
+        }
+    }
+    
+}
+
+mazeSolver(maze);
+
 
 // 9. Find ALL the ways out of the maze
 // Use the above maze and modify your solution so it finds All the possible exits through the Maze. 
@@ -181,7 +231,6 @@ function mazeSolver () {}
 // Path to the exit: RRDDRRUURRDDDD
 // Path to the exit: RRDDRRRRDD
 
-function masterMazeSolver () {}
 
 // 10. Anagrams
 // An anagram is any word or phrase that uses the letters of a given ("subject") word or phrase in another, rearranged order.
