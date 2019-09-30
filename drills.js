@@ -40,3 +40,15 @@ function powerCalculatorRec(base, exponent) {
     }
 }
 
+// 3. Reverse String
+// Write a function that reverses a string. Take a string as input, reverse the string, and return the new string.
+
+function reverseString (string) {
+    if (typeof(string) !== 'string') return 'input value must be a string'
+    if (string.length > 0) {
+    const lastchar = string[string.length-1];
+    return lastchar + reverseString(string.slice(0, -1));
+    } else {
+        return ''
+    }
+}
