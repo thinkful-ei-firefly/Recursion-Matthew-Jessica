@@ -72,3 +72,57 @@ function nthTriangularNumber (n) {
         return (n + nthTriangularNumber(n-1))
     }
 }
+
+// 5. String Splitter
+// Write a recursive function that split a string based on a separator (similar to String.prototype.split). 
+//Don't use JS array's split function to solve this problem.
+// Input: 02/20/2020
+// Output: 02202020
+
+function stringSplitter (string, character) {
+    if (typeof(string) !== 'string' || typeof(character) !== 'string') {
+        return 'input parameters must be strings'
+    } else if (string.length === 0) {
+        return ''
+    } else if (string[0] === character) {
+        return '' + stringSplitter(string.slice(1), character)
+    } else {
+        return string[0] + stringSplitter(string.slice(1), character)
+    }
+}
+
+// 6. Fibonacci
+// Write a recursive function that prints the Fibonacci sequence of a given number. 
+// The Fibonacci sequence is a series of numbers in which each number is the sum of the 2 preceding numbers. 
+// For example, the 7th Fibonacci number in a Fibonacci sequence is 13. The sequence looks as follows: 1, 1, 2, 3, 5, 8, 13.
+
+function fibonacci (n) {
+    let returnSequence = [];
+    for (let i=0; i<n; i++) {
+        if (i <= 1) {
+            returnSequence[i] = 1;
+        } else {
+            returnSequence[i] = returnSequence[i-1] + returnSequence[i-2];
+        }
+    }
+    return returnSequence;
+}
+
+function fibRecursive (n) {
+    if (n<1) {
+        return 0;
+    } else if (n===1) {
+        return 1;
+    } else {
+        return fibRecursive(n-1) + fibRecursive(n-2);
+    }
+}
+
+function fibSequenceRecursive (n) {
+    let returnSequence =[];
+    for (let i=0; i<n; i++) {
+        returnSequence[i] = fibRecursive(i+1)
+    }
+
+    console.log(returnSequence)
+}
