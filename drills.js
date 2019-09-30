@@ -216,7 +216,7 @@ function mazeSolver (maze, posY=0, posX=0, directions='') {
     
 }
 
-mazeSolver(maze);
+//mazeSolver(maze);
 
 
 // 9. Find ALL the ways out of the maze
