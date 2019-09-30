@@ -10,7 +10,7 @@
 // 1: Another sheep jumps over the fence
 // All sheep jumped over the fence
 
-function countSheep(n) {
+function countSheep (n) {
     if (n<=0 || typeof(n) !== 'number') {
         console.log('All sheep jumped over the fence.')
     } else {
@@ -26,7 +26,7 @@ function countSheep(n) {
 // powerCalculatorRec(10,2) should return 100
 // powerCalculatorRec(10,-2) should return exponent should be >= 0
 
-function powerCalculatorRec(base, exponent) {
+function powerCalculatorRec (base, exponent) {
     if (exponent < 0) {
         return 'exponent should be >= 0'
     } else if (base < 0) {
@@ -50,5 +50,25 @@ function reverseString (string) {
     return lastchar + reverseString(string.slice(0, -1));
     } else {
         return ''
+    }
+}
+
+
+// 4. nth Triangular Number
+// Calculate the nth triangular number. A triangular number counts the objects that can form an equilateral triangle. The nth triangular number is the number of dots composing a triangle with n dots on a side, and is equal to the sum of the n natural numbers from 1 to n. This is the Triangular Number Sequence: 1, 3, 6, 10, 15, 21, 28, 36, 45.
+
+//                           *
+//             *           *    *
+// *     |   *   *  |   *    *    *  |
+
+//  1st       2nd           3rd             nth?  
+
+function nthTriangularNumber (n) {
+    if (n < 1 || typeof(n) !== 'number') return 'n must be a number >= 1'
+    n = Math.floor(n);
+    if (n === 1) {
+        return 1;
+    } else {
+        return (n + nthTriangularNumber(n-1))
     }
 }
